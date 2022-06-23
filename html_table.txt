@@ -1,0 +1,24 @@
+from pandas import read_html
+
+html = """
+<table>
+  <tr>
+    <th>First</th>
+    <th>Last</th>
+  </tr>
+  <tr>
+    <td>John</td>
+    <td>Smith</td>
+  </tr>
+  <tr>
+    <td>Jane</td>
+    <td>Doe</td>
+  </tr>
+</table>
+"""
+tables = read_html(html)
+df = tables[0]
+
+print(df)
+print('----------')
+print(df['Last'][0])

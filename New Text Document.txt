@@ -1,0 +1,33 @@
+principal=int(input("Enter Principal: "))
+interest=int(input("Enter interest: "))
+tenor=int(input("Enter tenor: "))
+int_rate=interest/100
+
+monthly_emi =(int_rate/12) * (1/(1-(1+int_rate/12)**(-tenor)))*principal
+overall_amt= monthly_emi * tenor
+flat=((((monthly_emi*tenor)-principal)*12/tenor)/principal)*100
+Extra=principal+(monthly_emi*tenor)-principal-principal
+Extra_per_month = Extra/tenor
+Extra_per_year = Extra_per_month*12
+Extra_per_day= Extra_per_month/30
+#per_month_prcnt = ((flat/12)*100%)/100
+
+
+print("Monthly Installment is : {}.".format(monthly_emi))
+print("Overall Amount is {} : ".format(overall_amt))
+print("Flat value is : {}.".format(flat))
+print("Extra value is : {}.".format(Extra))
+print("Extra_per_month is : {}.".format(Extra_per_month))
+print("Extra_per_year is : {}.".format(Extra_per_year))
+print("Extra_per_day is : {}.".format(Extra_per_day))
+#print("Per_month_% is : {}.".format(per_month_prcnt))
+
+table = (x for x in amortization_schedule(principle, int_rate, tenor))
+print(
+    tabulate(
+        table,
+        headers=["Number", "Amount", "Interest", "Principal", "Balance"],
+        floatfmt=",.2f",
+        numalign="right"
+    )
+)
